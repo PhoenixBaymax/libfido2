@@ -109,6 +109,8 @@ fido_dev_open_rx(fido_dev_t *dev, int ms)
 		return (FIDO_ERR_RX);
 	}
 
+	dev->attr.nonce = dev->nonce; /* XXX fuzz */
+
 	if ((size_t)r != sizeof(dev->attr) || dev->attr.nonce != dev->nonce) {
 		log_debug("%s: invalid nonce", __func__);
 		return (FIDO_ERR_RX);
